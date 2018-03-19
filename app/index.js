@@ -8,3 +8,8 @@ import 'styles/index.scss';
 // ================================
 // START YOUR APP HERE
 // ================================
+
+
+(() => {
+  console.log("hello world");
+})();
