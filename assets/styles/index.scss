@@ -51,9 +51,21 @@ body {
     font-size: 18px;
     text-align: left;
     //padding-left: 10px;
-    line-height: 35px;
+    line-height: 1.2em;
   }
 
+   .food-item{
+     display: flex;
+     align-items: center;
+     padding-bottom: 10px;
+     i{
+       flex: 0 0 30px;
+     }
+     span{
+       flex: 0 0 100%;
+       padding-left: 10px;
+     }
+   }
   .line {
     height: 2px;
     width: 300px;
@@ -64,12 +76,24 @@ body {
     margin: 3vh auto 3vh auto;
   }
 
-  .bar {
+  .barContainer {
+    position: relative;
+    width: 100%;
     height: 30px;
-    width: 10%;
-    background-color: green;
-    color: green;
+    //background-color: pink;
   }
+
+  #bar {
+    height: 50px;
+    width: 2px;
+    background-color: white;
+    position: absolute;
+  }
+  #barText {
+    font-size: inherit;
+    position: absolute;
+  }
+
 
 
   // .element{

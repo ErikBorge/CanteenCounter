@@ -5,11 +5,7 @@
 // Load application styles
 import 'styles/index.scss';
 import $ from 'jquery';
-//import '../server/SERVERindex.js';
 
-// ================================
-// START YOUR APP HERE
-// ================================
 
 function checkTime(i) {
       if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
@@ -17,24 +13,37 @@ function checkTime(i) {
 }
 
 function timeProgress(hours, minutes){
-  if (hours>17 && hours<19){
-    return ((hours-17)*60+minutes)/120;
+  if (hours>=10 && hours<12){
+    return ((hours-10)*60+minutes)/120;
   }
   else {return 0;}
 }
 
 function moveBar(hours, minutes) {
   var elem = document.getElementById("bar");
-  var width = timeProgress(hours,minutes);
-  if (width == 0) {elem.style.width = 0 + '%'}
-  else {elem.style.width = width*100 + '%';}
-  elem.style.height = 5+'px';
-  elem.style.color = '#FFFFFF';
+  elem.style.left = timeProgress(hours,minutes)*100 + '%';
+  var elem = document.getElementById("barText");
+  elem.style.left = timeProgress(hours,minutes)*100 + '%';
 }
 
 (() => {
   console.log("hello world");
-  console.log($('#number').text());
+
+
+  $.ajax({
+    url: "http://localhost:3000/api",
+  })
+  .done(function( data ) {
+    $("#lunch").text(data.lunch);
+    $("#soup").text(data.soup);
+    $("#vegetar").text(data.vegetar);
+    // console.log(data.lunch);
+    // console.log(data.soup);
+    // console.log(data.vegetar);
+
+  });
+
+
 
   setInterval(function() {
     var date = new Date();
@@ -47,8 +56,19 @@ function moveBar(hours, minutes) {
 
     $("#time").html(timeHours + ":" + timeMinutes);
     $("#day").text("A typical "+weekday);
-    moveBar(timeHours,timeMinutes);
+    //moveBar(timeHours,timeMinutes);
   }, 100);
+
+  setInterval(function() {
+    $.ajax({
+      url: "http://localhost:3000/getPeople",
+    })
+    .done(function( data ) {
+      const numberOfPeople = Object.keys(data) ? Object.keys(data).length : 0;
+      $("#count").text(numberOfPeople);
+      //console.log(data);
+    });
+  }, 1510);
 
 
 
