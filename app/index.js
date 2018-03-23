@@ -5,6 +5,7 @@
 // Load application styles
 import 'styles/index.scss';
 import $ from 'jquery';
+import '../server/historicaldata';
 
 
 function checkTime(i) {
@@ -28,7 +29,7 @@ function moveBar(hours, minutes) {
 
 (() => {
   console.log("hello world");
-
+  //$("#container").text(container);
 
   $.ajax({
     url: "http://localhost:3000/api",

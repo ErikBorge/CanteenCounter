@@ -4,6 +4,9 @@
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 <html lang="en">
 <head>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>DD Cantina Counter</title>
@@ -15,8 +18,8 @@
       People in line
         <div class="count" id="count"></div>
       <div id="day"></div>
-      <img src="assets/images/testgraph.png" style="width:300px"></img>
-
+      <!--<img src="assets/images/testgraph.png" style="width:300px"></img>-->
+      <div class="graph" id="graph" style="width: 300px; height: 190px; margin: 0 auto"></div>
         <div class="menu">Menu</div>
         <div class="food">
           <div class="food-item">
@@ -33,5 +36,6 @@
 
         <!--<div class="barContainer"><div id="bar"><div id="barText">NOW</div></div></div>-->
     </div>
+
 </body>
 </html>
