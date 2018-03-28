@@ -27,6 +27,36 @@ function moveBar(hours, minutes) {
   elem.style.left = timeProgress(hours,minutes)*100 + '%';
 }
 
+var getCountColor = function(people) {
+    var green = [165,213,164]
+    var yellow = [236,212,163]
+    var red = [244,131,133]
+    if (people<0){people=0};
+    if (people>50){people=50};
+    var value = people/50;
+
+    if (value<=0.5){
+      var colorA = green;
+      var colorB = yellow;
+      value /= 0.5;
+    }
+    else {
+      var colorA = yellow;
+      var colorB = red;
+      value = (value - 0.5)/0.5;
+    };
+
+    return colorA.map(function(color, i) {
+        return (color + value * (colorB[i] - color)) & 255;
+    });
+};
+
+function rgb(values) {
+    return 'rgb(' + values.join(', ') + ')';
+}
+
+
+
 (() => {
   console.log("hello world");
   //$("#container").text(container);
@@ -67,9 +97,17 @@ function moveBar(hours, minutes) {
     .done(function( data ) {
       const numberOfPeople = Object.keys(data) ? Object.keys(data).length : 0;
       $("#count").text(numberOfPeople);
+      var elem = document.getElementById("count");
+
+      elem.style.color = rgb(getCountColor(numberOfPeople));
       //console.log(data);
     });
   }, 1510);
+
+
+  console.log(getCountColor(25));
+
+
 
 
 

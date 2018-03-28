@@ -16,7 +16,7 @@ body {
   background-color: $colorBlack;
   color: white;
   font-family: 'Px Grotesk'; //, Sans, Verdana;
-  font-weight: regular;
+  font-weight: normal;
   text-align: center;
   width: 300px;
   margin: auto auto;
@@ -55,6 +55,7 @@ body {
   }
 
    .food-item{
+     font-weight: lighter;
      display: flex;
      align-items: center;
      padding-bottom: 10px;
