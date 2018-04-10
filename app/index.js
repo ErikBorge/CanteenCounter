@@ -62,13 +62,13 @@ function rgb(values) {
   //$("#container").text(container);
 
   $.ajax({
-    url: "http://localhost:3000/api",
+    url: "http://cantina-counter-backend.herokuapp.com/api/v1/fetchMenu",
   })
   .done(function( data ) {
-    $("#lunch").text(data.lunch);
-    $("#soup").text(data.soup);
-    $("#vegetar").text(data.vegetar);
-    // console.log(data.lunch);
+    $("#lunch").text(data.data.lunch);
+    $("#soup").text(data.data.soup);
+    $("#vegetar").text(data.data.vegetar);
+    console.log(data.lunch);
     // console.log(data.soup);
     // console.log(data.vegetar);
 
