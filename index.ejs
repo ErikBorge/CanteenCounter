@@ -1,12 +1,13 @@
 
 
 <!doctype html>
-<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+<!--<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">-->
+<link rel='stylesheet' href='https://unpkg.com/emoji.css/dist/emoji.min.css'>
 <html lang="en">
 <head>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
+    <!-- <script src="https://code.highcharts.com/modules/series-label.js"></script> -->
+    <!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>DD Cantina Counter</title>
@@ -14,24 +15,29 @@
 <body>
     <div class="content">
       Now
-        <div class="time" id="time"></div>
-      People in line
-        <div class="count" id="count"></div>
-      <div id="day"></div>
-      <!--<img src="assets/images/testgraph.png" style="width:300px"></img>-->
-      <div class="graph" id="graph" style="width: 300px; height: 190px; margin: 0 auto"></div>
-        <div class="menu">Menu</div>
-        <div class="food">
+      <div class="time" id="time"></div>
+      <div class="peopleinline">
+        <i class="count" id="count"></i><span>People in the canteen <br> line right now</span>
+      </div>
+
+      <div class="count" id="count"></div>
+
+      <div class="pun" id="pun"></div>
+      <!-- <div id="day"></div> -->
+      <!-- <div class="graph" id="graph" style="width: 300px; height: 190px; margin: 0 auto"></div> -->
+      <div class="line"></div>
+      <div class="menu">Today's menu</div>
+      <div class="food">
           <div class="food-item">
-            <i class="em em-meat_on_bone"></i><span id="lunch"></span>
+            <i class="ec ec-meat-on-bone"></i><span id="lunch"></span>
           </div>
           <div class="food-item">
-            <i class="em em-broccoli"></i><span id="vegetar"></span>
+            <i class="ec ec-seedling"></i><span id="vegetar"></span>
           </div>
           <div class="food-item">
-            <i class="em em-bowl_with_spoon"></i><span id="soup"></span>
+            <i class="ec ec-tea"></i><span id="soup"></span>
           </div>
-        </div>
+      </div>
 
 
         <!--<div class="barContainer"><div id="bar"><div id="barText">NOW</div></div></div>-->

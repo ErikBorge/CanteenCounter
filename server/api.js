@@ -54,15 +54,13 @@ var request = require('request');
 //     }
 //   });
 // });
-
-
-//http://cantina-counter-backend.herokuapp.com/api/v1/fetchNumberOfPeopleInLine
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  getCoorContent.then((data) => {
-      res.json(data);
-  });
-});
-
-module.exports = router;
+//
+// 
+// /* GET home page. */
+// router.get('/', function(req, res, next) {
+//   getCoorContent.then((data) => {
+//       res.json(data);
+//   });
+// });
+//
+// module.exports = router;

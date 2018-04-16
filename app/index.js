@@ -7,6 +7,32 @@ import 'styles/index.scss';
 import $ from 'jquery';
 import '../server/historicaldata';
 
+var yesterdaysNumberOfPeople = -4;
+
+function getText(today, yesterday){
+  var text = "";
+  var cases = ["A diminished amount compared to yesterday",
+                "Slightly less than yesterday",
+                "About the same as yesterday",
+                "A tad more than yesterday",
+                "A lot more than yesterday"];
+  var many = ["The place is packed! ","There's people everywhere! "];
+  var few = ["There's basically noone there... "];
+
+  if (today >=30){
+    text+=many[1];
+  }
+  if (today <=7){
+    text+=few[0];
+  }
+  var diff = today-yesterday;
+  if (diff<-10){text+=cases[0];}
+  else if (diff<-5 && diff>=-10){text+=cases[1];}
+  else if (diff<5 && diff>=-5){text+=cases[2];}
+  else if (diff<10 && diff>=5){text+=cases[3];}
+  else if (diff>10){text+=cases[4];}
+  return text;
+}
 
 function checkTime(i) {
       if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
@@ -59,7 +85,6 @@ function rgb(values) {
 
 (() => {
   console.log("hello world");
-  //$("#container").text(container);
 
   $.ajax({
     url: "http://cantina-counter-backend.herokuapp.com/api/v1/fetchMenu",
@@ -68,13 +93,11 @@ function rgb(values) {
     $("#lunch").text(data.data.lunch);
     $("#soup").text(data.data.soup);
     $("#vegetar").text(data.data.vegetar);
-    console.log(data.lunch);
-    // console.log(data.soup);
-    // console.log(data.vegetar);
+    //console.log(data.data.lunch);
+    // console.log(data.data.soup);
+    // console.log(data.data.vegetar);
 
   });
-
-
 
   setInterval(function() {
     var date = new Date();
@@ -90,30 +113,21 @@ function rgb(values) {
     //moveBar(timeHours,timeMinutes);
   }, 100);
 
+  //var number = 30;
+  //$("#count").text(number);
   setInterval(function() {
     $.ajax({
-      url: "http://localhost:3000/getPeople",
+      url: "http://cantina-counter-backend.herokuapp.com/api/v1/fetchNumberOfPeopleInLine",
     })
     .done(function( data ) {
-      const numberOfPeople = Object.keys(data) ? Object.keys(data).length : 0;
-      $("#count").text(numberOfPeople);
+      $("#count").text(data.data);
+      const numberOfPeople = data.data;
       var elem = document.getElementById("count");
-
       elem.style.color = rgb(getCountColor(numberOfPeople));
-      //console.log(data);
+      $("#pun").text(getText(numberOfPeople, yesterdaysNumberOfPeople));
+      //console.log(numberOfPeople);
+
     });
   }, 1510);
-
-
-  console.log(getCountColor(25));
-
-
-
-
-
-
-  //const numberOfPeople = Object.keys(nextProps.content.people) ? Object.keys(nextProps.content.people).length : 0;
-  //$("people").html(numberOfPeople);
-
 
 })();

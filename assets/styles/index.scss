@@ -5,6 +5,32 @@
 $colorBlack: #000;
 $colorCount: #FF8484;
 
+@font-face {
+  font-family: 'HKGrotesk-Light';
+  src: url('/assets/fonts/HKGrotesk-Light.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/HKGrotesk-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/HKGrotesk-Light.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/HKGrotesk-Light.woff') format('woff'), /* Pretty Modern Browsers */
+}
+
+@mixin HKLight {
+  font-family: 'HKGrotesk-Light', sans-serif;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'HKGrotesk-Regular';
+  src: url('/assets/fonts/HKGrotesk-Regular.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/HKGrotesk-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/HKGrotesk-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/HKGrotesk-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+}
+
+@mixin HKRegular {
+  font-family: 'HKGrotesk-Regular', sans-serif;
+  font-weight: 400;
+}
+
 html {
     box-sizing: border-box;
 }
@@ -15,35 +41,55 @@ html {
 body {
   background-color: $colorBlack;
   color: white;
-  font-family: 'Px Grotesk'; //, Sans, Verdana;
-  font-weight: normal;
+  @include HKLight;
   text-align: center;
   width: 300px;
   margin: auto auto;
 }
 
 .content {
-  font-size: 20px;
+  font-size: 18px;
   margin-top: 3vh;
   //margin-bottom: 5vh;
-  font-weight: lighter;
 }
   .time {
-    font-size: 30px;
-    font-weight: normal;
-    margin-top: 1vh;
+    font-size: 28px;
+    //@include HKRegular;
+    //margin-top: 1vh;
     margin-bottom: 1vh;
   }
 
+  .peopleinline {
+    display: flex;
+    //align-items: center;
+    i{
+      flex: 0 0 30px;
+    }
+    span{
+      flex: 0 0 100%;
+      padding-left: 10px;
+      text-align: left;
+      vertical-align: top;
+      padding-top: 7px;
+
+    }
+  }
+
   .count {
-    font-size: 130px;
-    font-weight: normal;
+    font-size: 50px;
+    font-style: inherit;
     color: $colorCount;
   }
 
-  .menu {
-    font-weight: normal;
+  .pun {
+    padding-top: 40px;
     text-align: left;
+  }
+
+  .menu {
+    @include HKRegular;
+    text-align: left;
+    padding-left: 40px;
     margin: 3vh auto 1vh auto;
     line-height: 30px;
   }
@@ -55,12 +101,12 @@ body {
   }
 
    .food-item{
-     font-weight: lighter;
      display: flex;
      align-items: center;
      padding-bottom: 10px;
      i{
        flex: 0 0 30px;
+       font-style: normal;
      }
      span{
        flex: 0 0 100%;
