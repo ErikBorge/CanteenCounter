@@ -1,7 +1,7 @@
 /**
  * Application entry point
  */
-
+//test
 // Load application styles
 import 'styles/index.scss';
 import $ from 'jquery';
