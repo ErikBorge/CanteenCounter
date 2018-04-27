@@ -23,18 +23,24 @@
     </div>
 
     <div class="content">
-      Now
-      <div class="time" id="time"></div>
-      <div class="peopleinline">
-        <i class="count" id="count"></i><span>People in the canteen <br> line right now</span>
-      </div>
+      <header class="header">
+        Now
+        <div class="time" id="time"></div>
+      </header>
+      <main class="main">
+        <div class="container">
+          <div class="pun" id="pun"></div>
+          <svg width="100%" height="24px" xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <line class="dashedline" id="dashedline" x1="147" x2="147" y1="0" y2="24"></line>
+          </svg>
+          <div class="count" id="count"></div>
+          <div class="peopleinline" id="peopleinline">people in line</div>
+        </div>
+      </main>
 
-      <div class="count" id="count"></div>
-
-      <div class="pun" id="pun"></div>
       <!-- <div id="day"></div> -->
       <!-- <div class="graph" id="graph" style="width: 300px; height: 190px; margin: 0 auto"></div> -->
-      <div class="bottom">
+      <footer class="footer">
         <div class="line"></div>
         <div class="menu">Today's menu</div>
         <div class="food">
@@ -48,7 +54,7 @@
               <i class="ec ec-tea"></i><span id="soup"></span>
             </div>
         </div>
-      </div>
+      </footer>
 
 
         <!--<div class="barContainer"><div id="bar"><div id="barText">NOW</div></div></div>-->

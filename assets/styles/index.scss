@@ -20,7 +20,7 @@ $green: #99CC99;  // R153 G204 B153
 
 @mixin HKLight {
   font-family: 'HKGrotesk-Light', sans-serif;
-  //font-weight: 300;
+  font-weight: 200;
 }
 
 @font-face {
@@ -33,7 +33,7 @@ $green: #99CC99;  // R153 G204 B153
 
 @mixin HKRegular {
   font-family: 'HKGrotesk-Regular', sans-serif;
-  //font-weight: 400;
+  font-weight: 400;
 }
 
 @font-face {
@@ -46,7 +46,7 @@ $green: #99CC99;  // R153 G204 B153
 
 @mixin HKSemiBold {
   font-family: 'HKGrotesk-SemiBold', sans-serif;
-  //font-weight: 400;
+  font-weight: 400;
 }
 
 @font-face {
@@ -59,7 +59,7 @@ $green: #99CC99;  // R153 G204 B153
 
 @mixin HKBold {
   font-family: 'HKGrotesk-Bold', sans-serif;
-  //font-weight: 500;
+  font-weight: 500;
 }
 
 html {
@@ -76,9 +76,11 @@ body {
   text-align: center;
   width: 300px;
   margin: auto auto;
+  -webkit-font-smoothing: antialiased;
 }
 
 .loader {
+  //display: none;
   @include HKBold;
   width: 270px;
   margin: auto auto;
@@ -99,20 +101,25 @@ body {
     font-size: 40px;
     margin-left: 1px;
     height: 60px;
-    // .odometer-value:nth-child(-n+10){
-    //   color: $red;
-    // }
-    //
-    // .odometer-value:nth-child(-n+6){
-    //   color: $yellow;
-    // }
-    //
-    // .odometer-value:nth-child(-n+3){
-    //   color: $green;
-    // }
-    .odometer-value:nth-child(1){
-       color: $green;
+
+
+    .odometer-value:nth-child(-n+10){
+      color: $red;
     }
+
+    .odometer-value:nth-child(-n+6){
+      color: $yellow;
+    }
+
+    .odometer-value:nth-child(-n+3){
+      color: $green;
+    }
+    .odometer-value:nth-child(1){
+      color: white;
+    }
+    // .odometer-value:nth-child(1){
+    //    color: $green;
+    // }
   }
 
   .om.odometer-animating-up .odometer-ribbon-inner, .om.odometer-animating-down.odometer-animating .odometer-ribbon-inner {
@@ -134,49 +141,91 @@ body {
 
 .content {
   display: none;
+  height: 100vh;
+  overflow: hidden;
+  flex-flow: column;
+  align-items: center;
   font-size: 15px;
-  margin-top: 3vh;
+  // &.show{
+  //     display: flex;
+  // }
 }
+
+  .header{
+    flex: 0 0 80px;
+    padding-top: 20px;
+  }
   .time {
     font-size: 25px;
     margin-bottom: 1vh;
   }
 
-  .peopleinline {
-    display: flex;
-    padding-top: 40px;
-    i{
-      flex: 0 0 30px;
-    }
-    span{
-      flex: 0 0 100%;
-      font-size: 15px;
-      padding-left: 10px;
-      text-align: left;
-      vertical-align: top;
-      padding-top: 4px;
+.main{
+  flex: 1;
+  height: calc(100vh-260px);
+  position: relative;
+  width: 100vw;
+}
+.container{
+  position: absolute;
+  top: 50%;
+  transform: translate(0,-50%);
+  width: 100%;
+  padding: 0 40px;
+
+  &.closed {
+    .dashedline, .count, .peopleinline {
+        display: none;
+      }
+  }
+}
+
+// .container.closed {
+//   .dashedline, .count, .peopleinline {
+//     display: none;
+//   }
+// }
+  .pun {
+    @include HKSemiBold;
+    font-size: 35px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .dashedline {
+    stroke: salmon;
+    stroke-dasharray: 4;
+    stroke-dashoffset: 100%;
+  }
+  line {
+    stroke-width: 2;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 15s linear infinite;
+    stroke-opacity: 0.7;
+  }
+
+  @keyframes dash {
+  to {
+    stroke-dashoffset: 0;
     }
   }
 
   .count {
-    font-size: 40px;
-    font-style: inherit;
+    @include HKRegular;
+    font-size: 35px;
+    align-items: center;
     color: $red;
   }
 
-  .pun {
-    @include HKSemiBold;
-    font-size: 35px;
-    padding-top: 55px;
-    padding-bottom: 70px;
-    text-align: left;
+  .peopleinline {
+    @include HKLight;
+    text-align: center;
+    color: $red;
   }
 
-  .bottom{
-    position: absolute;
-    bottom: 0;
-    width: 300px;
-    height: 200px;
+  .footer{
+    flex: 0 0 180px;
   }
     .line {
       height: 1px;

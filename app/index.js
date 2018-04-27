@@ -94,20 +94,12 @@ function rgb(values) {
 
 (() => {
   console.log("hello world");
-  // setTimeout(function(){
-  //   odometer.innerHTML = 5;
-  //   // var elem = document.getElementById("odometer");
-  //   // elem.style.color = "#A5D5A4";
-  //   window.odometerOptions = {
-  //     //auto: false, // Don't automatically initialize everything with class 'odometer'
-  //     //selector: '.my-numbers', // Change the selector used to automatically find things to be animated
-  //     //format: '(,ddd).dd', // Change how digit groups are formatted, and how many digits are shown after the decimal point
-  //     duration: 30000, // Change how long the javascript expects the CSS animation to take
-  //     //theme: 'car', // Specify the theme (if you have more than one theme css file on the page)
-  //     //animation: 'count' // Count is a simpler animation method which just increments the value,
-  //                        // use it when you're looking for something more subtle.
-  //   };
-  // }, 500);
+  setTimeout(function(){
+    om.innerHTML = 0;
+    window.odometerOptions = {
+      duration: 30000, // Change how long the javascript expects the CSS animation to take
+    };
+  }, 500);
 
   var el = document.querySelector('.om');
 
@@ -115,9 +107,6 @@ function rgb(values) {
     el: el,
     value: 9,
     duration: 3000
-    // Any option (other than auto and selector) can be passed in here
-    //format: '',
-    //theme: 'digital'
   });
 
   //od.update(0)
@@ -126,9 +115,14 @@ function rgb(values) {
 
   var t = setTimeout(function(){
     $(".loader").fadeOut(500, function(){
-      $(".content").fadeIn(500);
+      $(".content")
+        .css("display", "flex")
+        .hide()
+        .fadeIn();
     });
-  }, 3500)
+
+    // $(".content").addClass("show");
+  }, 3700)
 
 
   $.ajax({
@@ -170,12 +164,18 @@ function rgb(values) {
       const numberOfPeople = data.data;
       var elem = document.getElementById("count");
       elem.style.color = rgb(getCountColor(numberOfPeople));
+      var elem = document.getElementById("peopleinline");
+      elem.style.color = rgb(getCountColor(numberOfPeople));
+      var elem = document.getElementById("dashedline");
+      elem.style.stroke = rgb(getCountColor(numberOfPeople));
       if (hours<11 || hours>=13){
        $("#count").text(data.data);
-       $("#pun").text(getText(-1, -1));
+       $("#pun").text(getText(27, -1));
+       //$(".container").addClass("closed");
       }
       else {
         $("#pun").text(getText(numberOfPeople, 0));
+        //$(".container").removeClass("closed");
       }
     });
   }, 3000);
