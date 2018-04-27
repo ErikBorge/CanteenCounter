@@ -9,11 +9,11 @@
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.dev.js",
     "build": "webpack -p --progress --mode production --config webpack.config.build.js",
     "startbackend": "babel-node server/index.js --presets es2015,stage-2",
-    "startAda": "babel-node server/AdafruitIndex.js"
+    "startAda": "babel-node server/AdafruitIndex.js",
+    "postinstall": "webpack -p --progress --mode production --config webpack.config.build.js"
   },
   "repository": {
     "type": "git",
-
     "url": "https://cvgellhorn@github.com/cvgellhorn/webpack-boilerplate.git"
   },
   "dependencies": {
