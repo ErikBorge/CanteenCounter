@@ -2,8 +2,13 @@
 // but allowing components to change
 // http://www.paulirish.com/2012/box-sizing-border-box-ftw/
 
-$colorBlack: #000;
-$colorCount: #FF8484;
+$colorBlack: #272A2C;
+//$red: #F48385;
+$red: #FF8484;  // R255 G132 B132
+//$yellow: #ECD4A3;
+$yellow: #EBD4A3;  // R235 G212 B163
+//$green: #A5D5A4;
+$green: #99CC99;  // R153 G204 B153
 
 @font-face {
   font-family: 'HKGrotesk-Light';
@@ -15,7 +20,7 @@ $colorCount: #FF8484;
 
 @mixin HKLight {
   font-family: 'HKGrotesk-Light', sans-serif;
-  font-weight: 300;
+  //font-weight: 300;
 }
 
 @font-face {
@@ -28,7 +33,33 @@ $colorCount: #FF8484;
 
 @mixin HKRegular {
   font-family: 'HKGrotesk-Regular', sans-serif;
-  font-weight: 400;
+  //font-weight: 400;
+}
+
+@font-face {
+  font-family: 'HKGrotesk-SemiBold';
+  src: url('/assets/fonts/HKGrotesk-SemiBold.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/HKGrotesk-SemiBold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/HKGrotesk-SemiBold.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/HKGrotesk-SemiBold.woff') format('woff'), /* Pretty Modern Browsers */
+}
+
+@mixin HKSemiBold {
+  font-family: 'HKGrotesk-SemiBold', sans-serif;
+  //font-weight: 400;
+}
+
+@font-face {
+  font-family: 'HKGrotesk-Bold';
+  src: url('/assets/fonts/HKGrotesk-Bold.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/HKGrotesk-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/HKGrotesk-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/HKGrotesk-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+}
+
+@mixin HKBold {
+  font-family: 'HKGrotesk-Bold', sans-serif;
+  //font-weight: 500;
 }
 
 html {
@@ -47,109 +78,160 @@ body {
   margin: auto auto;
 }
 
+.loader {
+  @include HKBold;
+  width: 270px;
+  margin: auto auto;
+  font-size: 40px;
+  color: #FFF;
+  padding-top: 280px;
+}
+
+  .logoItem{
+    display: flex;
+    > span{
+      flex: 1;
+      text-align: center;
+      width: 38.5px;
+    }
+  }
+  .om {
+    font-size: 40px;
+    margin-left: 1px;
+    height: 60px;
+    // .odometer-value:nth-child(-n+10){
+    //   color: $red;
+    // }
+    //
+    // .odometer-value:nth-child(-n+6){
+    //   color: $yellow;
+    // }
+    //
+    // .odometer-value:nth-child(-n+3){
+    //   color: $green;
+    // }
+    .odometer-value:nth-child(1){
+       color: $green;
+    }
+  }
+
+  .om.odometer-animating-up .odometer-ribbon-inner, .om.odometer-animating-down.odometer-animating .odometer-ribbon-inner {
+    -webkit-transition-duration: 3s !important;
+    -moz-transition-duration: 3s !important;
+    -ms-transition-duration: 3s !important;
+    -o-transition-duration: 3s !important;
+    transition-duration: 3s !important
+  }
+
+  .loaderText {
+    @include HKLight;
+    font-size: 15px;
+    color: #FFF;
+    padding-top: 156px;
+    padding-bottom: 10px;
+    text-align: left;
+  }
+
 .content {
-  font-size: 18px;
+  display: none;
+  font-size: 15px;
   margin-top: 3vh;
-  //margin-bottom: 5vh;
 }
   .time {
-    font-size: 28px;
-    //@include HKRegular;
-    //margin-top: 1vh;
+    font-size: 25px;
     margin-bottom: 1vh;
   }
 
   .peopleinline {
     display: flex;
-    //align-items: center;
+    padding-top: 40px;
     i{
       flex: 0 0 30px;
     }
     span{
       flex: 0 0 100%;
+      font-size: 15px;
       padding-left: 10px;
       text-align: left;
       vertical-align: top;
-      padding-top: 7px;
-
+      padding-top: 4px;
     }
   }
 
   .count {
-    font-size: 50px;
+    font-size: 40px;
     font-style: inherit;
-    color: $colorCount;
+    color: $red;
   }
 
   .pun {
-    padding-top: 40px;
+    @include HKSemiBold;
+    font-size: 35px;
+    padding-top: 55px;
+    padding-bottom: 70px;
     text-align: left;
   }
 
-  .menu {
-    @include HKRegular;
-    text-align: left;
-    padding-left: 40px;
-    margin: 3vh auto 1vh auto;
-    line-height: 30px;
-  }
-  .food {
-    font-size: 18px;
-    text-align: left;
-    //padding-left: 10px;
-    line-height: 1.2em;
-  }
-
-   .food-item{
-     display: flex;
-     align-items: center;
-     padding-bottom: 10px;
-     i{
-       flex: 0 0 30px;
-       font-style: normal;
-     }
-     span{
-       flex: 0 0 100%;
-       padding-left: 10px;
-     }
-   }
-  .line {
-    height: 2px;
+  .bottom{
+    position: absolute;
+    bottom: 0;
     width: 300px;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
-    background-color: white;
-    opacity: 0.65;
-    margin: 3vh auto 3vh auto;
+    height: 200px;
   }
+    .line {
+      height: 1px;
+      width: 300px;
+      background-color: white;
+      opacity: 0.65;
+    }
+    .menu {
+      @include HKBold;
+      text-align: left;
+      letter-spacing: 1px;
+      padding-left: 40px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      line-height: 30px;
+    }
+    .food {
+      font-size: 15px;
+      letter-spacing: 1.25px;
+      text-align: left;
+      line-height: 1.2em;
 
-  .barContainer {
-    position: relative;
-    width: 100%;
-    height: 30px;
-    //background-color: pink;
-  }
+    }
 
-  #bar {
-    height: 50px;
-    width: 2px;
-    background-color: white;
-    position: absolute;
-  }
-  #barText {
-    font-size: inherit;
-    position: absolute;
-  }
+     .food-item{
+       display: flex;
+       letter-spacing: 1.25px;
+       align-items: center;
+       padding-bottom: 10px;
+       i{
+         flex: 0 0 30px;
+         font-style: normal;
+         font-size: 23px;
+       }
+       span{
+         flex: 0 0 100%;
+         padding-left: 10px;
+         padding-right: 40px;
+       }
+     }
 
 
-
-  // .element{
-  //   color: #FF0000;
-  //   shape-outside: circle(30%);
-  //   transition: shape-outside 1s;
-  //   float: center;
+  // .barContainer {
+  //   position: relative;
+  //   width: 100%;
+  //   height: 30px;
   // }
-  //
-  // .element:hover{
-  //   shape-outside: circle(50%);
+
+  // #bar {
+  //   height: 50px;
+  //   width: 2px;
+  //   background-color: white;
+  //   position: absolute;
+  // }
+  // #barText {
+  //   font-size: inherit;
+  //   position: absolute;
   // }

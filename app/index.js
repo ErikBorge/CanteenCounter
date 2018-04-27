@@ -7,8 +7,6 @@ import 'styles/index.scss';
 import $ from 'jquery';
 import '../server/historicaldata';
 
-var yesterdaysNumberOfPeople = -4;
-
 function getText(today, yesterday){
   var text = "";
   var cases = ["A diminished amount compared to yesterday",
@@ -16,21 +14,34 @@ function getText(today, yesterday){
                 "About the same as yesterday",
                 "A tad more than yesterday",
                 "A lot more than yesterday"];
-  var many = ["The place is packed! ","There's people everywhere! "];
+  var many = ["There's people everywhere! "];
   var few = ["There's basically noone there... "];
+  var cases2 = ["Happy hour! Totally empty.", "There's basically nobody here.", "There's a few, but still ok.", "Starting to fill up now.", "I would consider waiting a bit.", "There's people everywhere! Don't go to lunch now."];
+  if (today==-1 && yesterday==-1){
+    text+="Canteen closed..."
+  }
+  else{
+      if (today == 0){text+=cases2[0]; return text;}
+      else if (today<7 && today>0){text+= cases2[1]; return text;}
+      else if (today>=7 && today<13){text+= cases2[2]; return text;}
+      else if (today>=13 && today<23){text+= cases2[3]; return text;}
+      else if (today>=23 && today<30){text+= cases2[4]; return text;}
+      else if (today>=30){text+= cases2[5]; return text;}
+    }
 
-  if (today >=30){
-    text+=many[1];
-  }
-  if (today <=7){
-    text+=few[0];
-  }
-  var diff = today-yesterday;
-  if (diff<-10){text+=cases[0];}
-  else if (diff<-5 && diff>=-10){text+=cases[1];}
-  else if (diff<5 && diff>=-5){text+=cases[2];}
-  else if (diff<10 && diff>=5){text+=cases[3];}
-  else if (diff>10){text+=cases[4];}
+  //   if (today >=30){
+  //     text+=many[0];
+  //   }
+  //   if (today <=7){
+  //     text+=few[0];
+  //   }
+  //   var diff = today-yesterday;
+  //   if (diff<-10){text+=cases[0];}
+  //   else if (diff<-5 && diff>=-10){text+=cases[1];}
+  //   else if (diff<5 && diff>=-5){text+=cases[2];}
+  //   else if (diff<10 && diff>=5){text+=cases[3];}
+  //   else if (diff>10){text+=cases[4];}
+  // }
   return text;
 }
 
@@ -58,8 +69,8 @@ var getCountColor = function(people) {
     var yellow = [236,212,163]
     var red = [244,131,133]
     if (people<0){people=0};
-    if (people>50){people=50};
-    var value = people/50;
+    if (people>30){people=30};
+    var value = people/30;
 
     if (value<=0.5){
       var colorA = green;
@@ -81,10 +92,44 @@ function rgb(values) {
     return 'rgb(' + values.join(', ') + ')';
 }
 
-
-
 (() => {
   console.log("hello world");
+  // setTimeout(function(){
+  //   odometer.innerHTML = 5;
+  //   // var elem = document.getElementById("odometer");
+  //   // elem.style.color = "#A5D5A4";
+  //   window.odometerOptions = {
+  //     //auto: false, // Don't automatically initialize everything with class 'odometer'
+  //     //selector: '.my-numbers', // Change the selector used to automatically find things to be animated
+  //     //format: '(,ddd).dd', // Change how digit groups are formatted, and how many digits are shown after the decimal point
+  //     duration: 30000, // Change how long the javascript expects the CSS animation to take
+  //     //theme: 'car', // Specify the theme (if you have more than one theme css file on the page)
+  //     //animation: 'count' // Count is a simpler animation method which just increments the value,
+  //                        // use it when you're looking for something more subtle.
+  //   };
+  // }, 500);
+
+  var el = document.querySelector('.om');
+
+  var od = new Odometer({
+    el: el,
+    value: 9,
+    duration: 3000
+    // Any option (other than auto and selector) can be passed in here
+    //format: '',
+    //theme: 'digital'
+  });
+
+  //od.update(0)
+  // or
+  el.innerHTML = 0
+
+  var t = setTimeout(function(){
+    $(".loader").fadeOut(500, function(){
+      $(".content").fadeIn(500);
+    });
+  }, 3500)
+
 
   $.ajax({
     url: "http://cantina-counter-backend.herokuapp.com/api/v1/fetchMenu",
@@ -96,7 +141,6 @@ function rgb(values) {
     //console.log(data.data.lunch);
     // console.log(data.data.soup);
     // console.log(data.data.vegetar);
-
   });
 
   setInterval(function() {
@@ -109,7 +153,7 @@ function rgb(values) {
     var timeSeconds = checkTime(date.getSeconds());
 
     $("#time").html(timeHours + ":" + timeMinutes);
-    $("#day").text("A typical "+weekday);
+    //$("#day").text("A typical "+weekday);
     //moveBar(timeHours,timeMinutes);
   }, 100);
 
@@ -120,14 +164,20 @@ function rgb(values) {
       url: "http://cantina-counter-backend.herokuapp.com/api/v1/fetchNumberOfPeopleInLine",
     })
     .done(function( data ) {
+      var date = new Date();
+      var hours = checkTime(date.getHours());
       $("#count").text(data.data);
       const numberOfPeople = data.data;
       var elem = document.getElementById("count");
       elem.style.color = rgb(getCountColor(numberOfPeople));
-      $("#pun").text(getText(numberOfPeople, yesterdaysNumberOfPeople));
-      //console.log(numberOfPeople);
-
+      if (hours<11 || hours>=13){
+       $("#count").text(data.data);
+       $("#pun").text(getText(-1, -1));
+      }
+      else {
+        $("#pun").text(getText(numberOfPeople, 0));
+      }
     });
-  }, 1510);
+  }, 3000);
 
 })();

@@ -3,6 +3,8 @@
 <!doctype html>
 <!--<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">-->
 <link rel='stylesheet' href='https://unpkg.com/emoji.css/dist/emoji.min.css'>
+<link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-minimal.css" />
+<script src="http://github.hubspot.com/odometer/odometer.js"></script>
 <html lang="en">
 <head>
     <!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
@@ -10,9 +12,16 @@
     <!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <title>DD Cantina Counter</title>
+    <title>DD Canteen Counter</title>
 </head>
 <body>
+    <div class="loader">
+      <div class="logoItem"><span>C</span><span>A</span><span>N</span><span>T</span><span>E</span><span>E</span><span>N</span></div>
+      <div class="logoItem"><span>C</span><span><div id="om" class="om">9</div></span><span>U</span><span>N</span><span>T</span><span>E</span><span>R</span></div>
+      <div class="loaderText">Counted with love by</div>
+      <img src="assets/images/DDlogo.svg" alt="DDlogo" width="74" align="left">
+    </div>
+
     <div class="content">
       Now
       <div class="time" id="time"></div>
@@ -25,18 +34,20 @@
       <div class="pun" id="pun"></div>
       <!-- <div id="day"></div> -->
       <!-- <div class="graph" id="graph" style="width: 300px; height: 190px; margin: 0 auto"></div> -->
-      <div class="line"></div>
-      <div class="menu">Today's menu</div>
-      <div class="food">
-          <div class="food-item">
-            <i class="ec ec-meat-on-bone"></i><span id="lunch"></span>
-          </div>
-          <div class="food-item">
-            <i class="ec ec-seedling"></i><span id="vegetar"></span>
-          </div>
-          <div class="food-item">
-            <i class="ec ec-tea"></i><span id="soup"></span>
-          </div>
+      <div class="bottom">
+        <div class="line"></div>
+        <div class="menu">Today's menu</div>
+        <div class="food">
+            <div class="food-item">
+              <i class="ec ec-meat-on-bone"></i><span id="lunch"></span>
+            </div>
+            <div class="food-item">
+              <i class="ec ec-seedling"></i><span id="vegetar"></span>
+            </div>
+            <div class="food-item">
+              <i class="ec ec-tea"></i><span id="soup"></span>
+            </div>
+        </div>
       </div>
 
 
