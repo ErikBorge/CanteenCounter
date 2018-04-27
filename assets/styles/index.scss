@@ -91,13 +91,18 @@ body {
 }
 
 .loader {
-  //display: none;
+  //display: flex;
   @include HKBold;
   width: 270px;
-  margin: auto auto;
+  //margin: auto auto;
   font-size: 40px;
   color: #FFF;
-  padding-top: 280px;
+  //padding-top: 280px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
   .logoItem{
