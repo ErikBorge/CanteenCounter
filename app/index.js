@@ -126,7 +126,7 @@ function rgb(values) {
 
 
   $.ajax({
-    url: "http://cantina-counter-backend.herokuapp.com/api/v1/fetchMenu",
+    url: "https://cantina-counter-backend.herokuapp.com/api/v1/fetchMenu",
   })
   .done(function( data ) {
     $("#lunch").text(data.data.lunch);
@@ -153,7 +153,7 @@ function rgb(values) {
 
   setInterval(function() {
     $.ajax({
-      url: "http://cantina-counter-backend.herokuapp.com/api/v1/fetchNumberOfPeopleInLine",
+      url: "https://cantina-counter-backend.herokuapp.com/api/v1/fetchNumberOfPeopleInLine",
     })
     .done(function( data ) {
       var date = new Date();
