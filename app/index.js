@@ -151,8 +151,6 @@ function rgb(values) {
     //moveBar(timeHours,timeMinutes);
   }, 100);
 
-  //var number = 30;
-  //$("#count").text(number);
   setInterval(function() {
     $.ajax({
       url: "http://cantina-counter-backend.herokuapp.com/api/v1/fetchNumberOfPeopleInLine",
@@ -170,12 +168,12 @@ function rgb(values) {
       elem.style.stroke = rgb(getCountColor(numberOfPeople));
       if (hours<11 || hours>=13){
        $("#count").text(data.data);
-       $("#pun").text(getText(27, -1));
-       //$(".container").addClass("closed");
+       $("#pun").text(getText(-1, -1));
+       $(".container").addClass("closed");
       }
       else {
         $("#pun").text(getText(numberOfPeople, 0));
-        //$(".container").removeClass("closed");
+        $(".container").removeClass("closed");
       }
     });
   }, 3000);

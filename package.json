@@ -13,6 +13,7 @@
   },
   "repository": {
     "type": "git",
+
     "url": "https://cvgellhorn@github.com/cvgellhorn/webpack-boilerplate.git"
   },
   "dependencies": {

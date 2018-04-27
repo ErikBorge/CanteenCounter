@@ -10,6 +10,17 @@ $yellow: #EBD4A3;  // R235 G212 B163
 //$green: #A5D5A4;
 $green: #99CC99;  // R153 G204 B153
 
+$no9: #FFF;
+$no8: #FFF;
+$no7: #FFF;
+$no6: #FFF;
+$no5: #FFF;
+$no4: #FFF;
+$no3: #FFF;
+$no2: #FFF;
+$no1: #FFF;
+
+
 @font-face {
   font-family: 'HKGrotesk-Light';
   src: url('/assets/fonts/HKGrotesk-Light.eot'); /* IE9 Compat Modes */
@@ -20,7 +31,7 @@ $green: #99CC99;  // R153 G204 B153
 
 @mixin HKLight {
   font-family: 'HKGrotesk-Light', sans-serif;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 @font-face {
