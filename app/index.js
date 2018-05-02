@@ -134,7 +134,7 @@ function resize() {
     });
 
     // $(".content").addClass("show");
-  }, 0)  //correct: 3700
+  }, 3700)  //correct: 3700
 
 
   $.ajax({
