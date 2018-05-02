@@ -3,23 +3,17 @@
 // http://www.paulirish.com/2012/box-sizing-border-box-ftw/
 
 $colorBlack: #272A2C;
-//$red: #F48385;
-$red: #FF8484;  // R255 G132 B132
-//$yellow: #ECD4A3;
-$yellow: #EBD4A3;  // R235 G212 B163
-//$green: #A5D5A4;
-$green: #99CC99;  // R153 G204 B153
+$red: #FF8787;  // RGB 255 135 135
+$yellow: #F6C678;  // RGB 246 198 120
+$green: #C2E1C0;  // RGB 194 225 192
 
-$no9: #FFF;
-$no8: #FFF;
-$no7: #FFF;
-$no6: #FFF;
-$no5: #FFF;
-$no4: #FFF;
-$no3: #FFF;
-$no2: #FFF;
-$no1: #FFF;
+$no8: #FBA081;
+$no7: #F9B47C;
+$no6: #F8BA7B;
 
+$no4: #F2CF8D;
+$no3: #EFD59D;
+$no2: #EAE2BC;
 
 @font-face {
   font-family: 'HKGrotesk-Light';
@@ -117,29 +111,20 @@ body {
     font-size: 40px;
     margin-left: 1px;
     height: 60px;
-
-
-    .odometer-value:nth-child(-n+10){
-      color: $red;
-    }
-
-    .odometer-value:nth-child(-n+6){
-      color: $yellow;
-    }
-
-    .odometer-value:nth-child(-n+3){
-      color: $green;
-    }
-    .odometer-value:nth-child(1){
-      color: white;
-    }
-    // .odometer-value:nth-child(1){
-    //    color: $green;
-    // }
+    .odometer-value:nth-child(10){color: $red;}
+    .odometer-value:nth-child(9){color: $no8;}
+    .odometer-value:nth-child(8){color: $no7;}
+    .odometer-value:nth-child(7){color: $no6;}
+    .odometer-value:nth-child(6){color: $yellow;}
+    .odometer-value:nth-child(5){color: $no4;}
+    .odometer-value:nth-child(4){color: $no3;}
+    .odometer-value:nth-child(3){color: $no2;}
+    .odometer-value:nth-child(2){color: $green;}
+    .odometer-value:nth-child(1){color: white;}
   }
 
   .om.odometer-animating-up .odometer-ribbon-inner, .om.odometer-animating-down.odometer-animating .odometer-ribbon-inner {
-    -webkit-transition-duration: 3s !important;
+    -webkit-transition-duration: 3s !important;  //correct: 3s
     -moz-transition-duration: 3s !important;
     -ms-transition-duration: 3s !important;
     -o-transition-duration: 3s !important;

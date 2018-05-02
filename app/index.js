@@ -65,9 +65,9 @@ function moveBar(hours, minutes) {
 }
 
 var getCountColor = function(people) {
-    var green = [165,213,164]
-    var yellow = [236,212,163]
-    var red = [244,131,133]
+    var green = [194, 225, 192]
+    var yellow = [246, 198, 120]
+    var red = [255, 135, 135]
     if (people<0){people=0};
     if (people>30){people=30};
     var value = people/30;
@@ -97,7 +97,7 @@ function rgb(values) {
   setTimeout(function(){
     om.innerHTML = 0;
     window.odometerOptions = {
-      duration: 30000, // Change how long the javascript expects the CSS animation to take
+      duration: 10000, // Change how long the javascript expects the CSS animation to take
     };
   }, 500);
 
@@ -122,7 +122,7 @@ function rgb(values) {
     });
 
     // $(".content").addClass("show");
-  }, 3700)
+  }, 3700)  //correct: 3700
 
 
   $.ajax({
