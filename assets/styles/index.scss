@@ -205,6 +205,9 @@ body {
 //   }
 // }
   .pun {
+    @media(min-width: 481px){
+      font-size: 45px;
+    }
     @include HKSemiBold;
     font-size: 35px;
     padding-bottom: 10px;
