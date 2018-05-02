@@ -113,16 +113,25 @@ function rgb(values) {
   // or
   el.innerHTML = 0
 
+  $(window).on("resize", function(){
+    console.log("hey");
+    if (window.matchMedia("(max-width: 480px)").matches) {
+      $(".content").height($(window).height());
+    }
+  })
+
+  var display = window.matchMedia("(max-width: 480px)").matches ? "flex" : "block";
+
   var t = setTimeout(function(){
     $(".loader").fadeOut(500, function(){
       $(".content")
-        .css("display", "flex")
+        .css("display", display)
         .hide()
         .fadeIn();
     });
 
     // $(".content").addClass("show");
-  }, 3700)  //correct: 3700
+  }, 0)  //correct: 3700
 
 
   $.ajax({

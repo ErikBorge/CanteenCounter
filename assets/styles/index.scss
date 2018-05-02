@@ -135,17 +135,26 @@ body {
     @include HKLight;
     font-size: 15px;
     color: #FFF;
-    padding-top: 156px;
+    padding-top: 250px;  //156
     padding-bottom: 10px;
     text-align: left;
   }
 
 .content {
+  @media(max-width: 480px){
+    flex-flow: column;
+    align-items: center;
+    height: 100vh;
+  }
+  @media(min-width: 481px){
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    width: 100vw;
+    left: 0;
+  }
   display: none;
-  height: 100vh;
   overflow: hidden;
-  flex-flow: column;
-  align-items: center;
   font-size: 15px;
   // &.show{
   //     display: flex;
@@ -153,7 +162,9 @@ body {
 }
 
   .header{
-    flex: 0 0 80px;
+    @media(max-width: 480px){
+      flex: 0 0 80px;
+    }
     padding-top: 20px;
   }
   .time {
@@ -162,18 +173,25 @@ body {
   }
 
 .main{
-  flex: 1;
-  height: calc(100vh-260px);
+  @media(max-width: 480px){
+    flex: 1;
+    height: calc(100vh - 260px);
+  }
+  @media(min-width: 481px){
+    padding: 50px 20px 60px;
+  }
+
   position: relative;
   width: 100vw;
 }
 .container{
-  position: absolute;
-  top: 50%;
-  transform: translate(0,-50%);
-  width: 100%;
+  @media(max-width: 480px){
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    width: 100%;
+  }
   padding: 0 40px;
-
   &.closed {
     .dashedline, .count, .peopleinline {
         display: none;
@@ -193,6 +211,17 @@ body {
     text-align: center;
   }
 
+  .image{
+    text-align: center;
+    position: relative;
+    overflow-x: hidden;
+    height: 24px;
+    svg{
+      position: absolute;
+      left: 50%;
+    }
+  }
+
   .dashedline {
     stroke: salmon;
     stroke-dasharray: 4;
@@ -202,7 +231,7 @@ body {
     stroke-width: 2;
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
-    animation: dash 15s linear infinite;
+    animation: dash 20s linear infinite;
     stroke-opacity: 0.7;
   }
 
@@ -226,14 +255,18 @@ body {
   }
 
   .footer{
-    flex: 0 0 180px;
-  }
-    .line {
-      height: 1px;
-      width: 300px;
-      background-color: white;
-      opacity: 0.65;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    @media(max-width: 480px){
+      flex: 0 0 180px;
     }
+    @media(min-width: 481px){
+      margin: 0 auto;
+      width: 100%;
+      max-width: 500px;
+    }
+
+  }
+
     .menu {
       @include HKBold;
       text-align: left;
