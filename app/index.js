@@ -5,6 +5,7 @@
 // Load application styles
 import 'styles/index.scss';
 import $ from 'jquery';
+import _ from 'lodash';
 import '../server/historicaldata';
 
 function getText(today, yesterday){
@@ -92,6 +93,13 @@ function rgb(values) {
     return 'rgb(' + values.join(', ') + ')';
 }
 
+function resize() {
+  console.log("hey");
+  if (window.matchMedia("(max-width: 480px)").matches) {
+    $(".content").height($(window).height());
+  }
+}
+
 (() => {
   console.log("hello world");
   setTimeout(function(){
@@ -113,12 +121,7 @@ function rgb(values) {
   // or
   el.innerHTML = 0
 
-  $(window).on("resize", function(){
-    console.log("hey");
-    if (window.matchMedia("(max-width: 480px)").matches) {
-      $(".content").height($(window).height());
-    }
-  })
+  $(window).on("resize", resize);
 
   var display = window.matchMedia("(max-width: 480px)").matches ? "flex" : "block";
 
@@ -187,4 +190,5 @@ function rgb(values) {
     });
   }, 3000);
 
+  resize();
 })();
